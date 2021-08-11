@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">{{menu}}</h4>
+                        <div class="ms-auto text-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{menu}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                 <div class="col-12">
+                 <div class="card">
+                            <div class="card-body">
+                            <a href="{% url 'inputkaryawan'  %}" type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"> Tambah Karyawan</i></a>
+                            <br/>
+                                
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Nama Dekan</th>
+                                        <th scope="col">Nama Karyawan</th>
+                                        <th scope="col">No Telo</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for r in karyawan %}
+                                 <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ r.user }}</td>
+                                        <td>{{ r.id_unit.nama_dekan }}</td>
+                                        <td>{{ r.nama_karyawan }}</td>
+                                        <td>{{ r.telp_karyawan }}</td>
+                                        <td></td>
+                                    </tr>
+                                
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" align="center"> Data Masih Kosong</td>
+                                </tr>
+                                
+                                {% endfor %}
+                                   
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                 </div>
+            </div>
+            
+            
+
+{% endblock content %}
+

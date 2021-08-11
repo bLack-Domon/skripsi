@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">{{menu}}</h4>
+                        <div class="ms-auto text-end">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{menu}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                 <div class="col-12">
+                 <div class="card">
+                            <div class="card-body">
+                {% if messages %}
+                    {% for pesan  in messages  %}
+                        <div class="alert alert-{{ pesan.tags }}" align="center">
+                            <b>{{ pesan }}</b>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                            <form class="form-horizontal" action="{% url 'inputkaryawan'  %}" method="POST">
+                            {% csrf_token %}
+                                <div class="card-body">
+                                    <h4 class="card-title">Form Karyawan</h4>
+                                    {{form}}
+                                <div class="form-group mt-3">
+                                    <label>Username: </label>
+                                    <input type="text" class="form-control" name="username" id="date-mask"
+                                        placeholder="Username">
+                                </div>
+
+                                 <div class="form-group mt-3">
+                                    <label>Password: </label>
+                                    <input type="password" class="form-control" name="password" id="date-mask"
+                                        placeholder="Password">
+                                </div>
+
+                                 <div class="form-group mt-3">
+                                    <label>Ulangi Password: </label>
+                                    <input type="password" class="form-control" name="password2" id="date-mask"
+                                        placeholder="Password">
+                                </div>
+
+                                 <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">SIMPAN</button>
+                                    </div>
+                                </div>
+
+
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                 </div>
+            </div>
+            
+            
+
+{% endblock content %}
+
